@@ -84,3 +84,22 @@ void carregarTarefas(Tarefa* tarefas, int* numTarefas, const char* nomeArquivo) 
 
     printf("Tarefas carregadas com sucesso do arquivo %s.\n", nomeArquivo);
 }
+
+void filtrarPrioridade(const Tarefa* tarefas, int numTarefas) {
+    int valorPrioridade;
+    printf("Digite a prioridade que deseja filtrar (0-10): ");
+    scanf("%d", &valorPrioridade);
+
+    printf("Tarefas com prioridade %d:\n", valorPrioridade);
+    printf("------------------------------\n");
+
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == valorPrioridade) {
+            printf("Tarefa %d:\n", i + 1);
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descrição: %s\n", tarefas[i].descricao);
+            printf("Categoria: %s\n", tarefas[i].categoria);
+            printf("------------------------------\n");
+        }
+    }
+}

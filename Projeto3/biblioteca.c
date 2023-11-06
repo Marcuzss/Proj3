@@ -23,7 +23,6 @@ void criarTarefa(Tarefa* tarefas, int* numTarefas) {
     tarefas[*numTarefas] = novaTarefa;
     (*numTarefas)++;
 }
-//A função criarTarefa é responsável por criar uma nova tarefa. Ela solicita ao usuário uma prioridade, descrição e categoria, e adiciona a nova tarefa ao array tarefas.
 
 void deletarTarefa(Tarefa* tarefas, int* numTarefas, int posicao) {
     if (posicao < 0 || posicao >= *numTarefas) {
@@ -37,7 +36,6 @@ void deletarTarefa(Tarefa* tarefas, int* numTarefas, int posicao) {
 
     (*numTarefas)--;
 }
-//A função deletarTarefa recebe a posição de uma tarefa a ser deletada e remove essa tarefa do array tarefas.
 
 void listarTarefas(const Tarefa* tarefas, int numTarefas) {
     if (numTarefas == 0) {
@@ -53,7 +51,6 @@ void listarTarefas(const Tarefa* tarefas, int numTarefas) {
         printf("------------------------------\n");
     }
 }
-//A função listarTarefas exibe todas as tarefas cadastradas no array tarefas.
 
 void salvarTarefas(const Tarefa* tarefas, int numTarefas, const char* nomeArquivo) {
     FILE* arquivo = fopen(nomeArquivo, "wb");
@@ -67,8 +64,6 @@ void salvarTarefas(const Tarefa* tarefas, int numTarefas, const char* nomeArquiv
 
     printf("Tarefas salvas com sucesso no arquivo %s.\n", nomeArquivo);
 }
-
-//A função salvarTarefas recebe o nome de um arquivo e salva as tarefas contidas no array tarefas nesse arquivo.
 
 void carregarTarefas(Tarefa* tarefas, int* numTarefas, const char* nomeArquivo) {
     FILE* arquivo = fopen(nomeArquivo, "rb");
@@ -89,6 +84,19 @@ void carregarTarefas(Tarefa* tarefas, int* numTarefas, const char* nomeArquivo) 
 
     printf("Tarefas carregadas com sucesso do arquivo %s.\n", nomeArquivo);
 }
-//A função carregarTarefas recebe o nome de um arquivo e carrega as tarefas desse arquivo para o array tarefas.
 
-//Essas funções são implementadas de acordo com o cabeçalho (Biblioteca.h).
+void alterarTarefa(Tarefa* tarefas, int posicao) {
+    if (posicao < 0 || posicao >= MAX_TAREFAS) {
+        printf("Posição inválida.\n");
+        return;
+    }
+
+    printf("Digite a prioridade da tarefa (0-10): ");
+    scanf("%d", &(tarefas[posicao].prioridade));
+
+    printf("Digite a descrição da tarefa (até %d letras): ", MAX_DESCRICAO);
+    scanf(" %[^\n]", tarefas[posicao].descricao);
+
+    printf("Digite a categoria da tarefa (até %d letras): ", MAX_CATEGORIA);
+    scanf(" %[^\n]", tarefas[posicao].categoria);
+}

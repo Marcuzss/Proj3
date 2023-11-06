@@ -1,5 +1,3 @@
-// Marcus Vinicius Zelenato RA: 22.223.084-9
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "biblioteca.h"
@@ -15,9 +13,16 @@ int main() {
         printf("3. Listar tarefas\n");
         printf("4. Salvar tarefas em arquivo\n");
         printf("5. Carregar tarefas do arquivo\n");
+        printf("6. Alterar tarefa\n");
+        printf("7. Filtrar tarefas por prioridade\n");
+        printf("8. Filtrar tarefas por estado\n"); 
+        printf("9. Filtrar tarefas por categoria\n"); 
+        printf("10. Filtrar tarefas por prioridade e categoria\n");
+        printf("11. Exportar tarefas por prioridade\n");
+        printf("12. Exportar tarefas por categoria\n");
+        printf("13. Exportar tarefas por prioridade e categoria\n");
         printf("0. Sair\n");
         printf("Escolha uma opção: ");
-
         int opcao;
         scanf("%d", &opcao);
 
@@ -35,18 +40,8 @@ int main() {
             printf("Digite o nome do arquivo para salvar as tarefas: ");
             scanf("%s", nomeArquivo);
             salvarTarefas(tarefas, numTarefas, nomeArquivo);
-        } else if (opcao == 5) {
-            char nomeArquivo[MAX_CATEGORIA];
-            printf("Digite o nome do arquivo para carregar as tarefas: ");
-            scanf("%s", nomeArquivo);
-            carregarTarefas(tarefas, &numTarefas, nomeArquivo);
-        } else if (opcao == 0) {
-            printf("Encerrando o programa...\n");
-            break;
-        } else {
-            printf("Opção inválida.\n");
+   
         }
     }
-
-    return 0;
 }
+

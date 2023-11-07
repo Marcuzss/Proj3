@@ -180,3 +180,18 @@ void filtrarEstado(const Tarefa* tarefas, int numTarefas) {
         }
     }
 }
+
+filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida) {
+    printf("Tarefas com prioridade %d e categoria %s:\n", prioridadeEscolhida, categoriaEscolhida);
+    printf("------------------------------\n");
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridadeEscolhida && strcmp(tarefas[i].categoria, categoriaEscolhida) == 0) {
+            printf("Tarefa %d:\n", i + 1);
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descrição: %s\n", tarefas[i].descricao);
+            printf("Categoria: %s\n", tarefas[i].categoria);
+            printf("Estado: %s\n", tarefas[i].estado);
+            printf("------------------------------\n");
+        }
+    }
+}

@@ -20,6 +20,12 @@ void salvarTarefas(const Tarefa* tarefas, int numTarefas, const char* nomeArquiv
 void carregarTarefas(Tarefa* tarefas, int* numTarefas, const char* nomeArquivo);
 void alterarTarefa(Tarefa* tarefas, int posicao);
 void filtrarPrioridade(const Tarefa* tarefas, int numTarefas); 
+void exportarPrioridade(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* nomeArquivo);
+void filtrarEstado(const Tarefa* tarefas, int numTarefas);
+void filtrarCategoria(const Tarefa* tarefas, int numTarefas);
+void exportarCategoria(const Tarefa* tarefas, int numTarefas, const char* categoriaEscolhida, const char* nomeArquivo);
+void filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida);
+void exportarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, const char* nomeArquivo, int prioridade, const char* categoria);
 
 
 #endif

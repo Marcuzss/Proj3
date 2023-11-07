@@ -25,6 +25,7 @@ int main() {
         printf("13. Exportar tarefas por prioridade e categoria\n");
         printf("0. Sair\n");
         printf("Escolha uma opção: ");
+        
         int opcao;
         scanf("%d", &opcao);
 
@@ -42,8 +43,19 @@ int main() {
             printf("Digite o nome do arquivo para salvar as tarefas: ");
             scanf("%s", nomeArquivo);
             salvarTarefas(tarefas, numTarefas, nomeArquivo);
-   
+        } else if (opcao == 5) {
+            char nomeArquivo[MAX_CATEGORIA];
+            printf("Digite o nome do arquivo para carregar as tarefas: ");
+            scanf("%s", nomeArquivo);
+            carregarTarefas(tarefas, &numTarefas, nomeArquivo);
+        } else if (opcao == 0) {
+            printf("Encerrando o programa...\n");
+            break;
+        } else {
+            printf("Opção inválida.\n");
         }
     }
+
+    return 0;
 }
 

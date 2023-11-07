@@ -219,3 +219,23 @@ void exportarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, const ch
     fclose(arquivo);
     printf("Tarefas exportadas com sucesso no arquivo %s.\n", nomeArquivo);
 }
+
+void filtrarEstado(const Tarefa* tarefas, int numTarefas) {
+    char estadoEscolhido[MAX_ESTADO];
+    printf("Digite o estado que deseja filtrar: ");
+    scanf(" %[^\n]", estadoEscolhido);
+
+    printf("Tarefas no estado %s:\n", estadoEscolhido);
+    printf("------------------------------\n");
+
+    for (int i = 0; i < numTarefas; i++) {
+        if (strcmp(tarefas[i].estado, estadoEscolhido) == 0) {
+            printf("Tarefa %d:\n", i + 1);
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descrição: %s\n", tarefas[i].descricao);
+            printf("Categoria: %s\n", tarefas[i].categoria);
+            printf("Estado: %s\n", tarefas[i].estado);
+            printf("------------------------------\n");
+        }
+    }
+}

@@ -195,3 +195,27 @@ void filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prior
         }
     }
 }
+
+void exportarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, const char* nomeArquivo, int prioridade, const char* categoria) {
+    FILE* arquivo = fopen(nomeArquivo, "w");
+    if (arquivo == NULL) {
+        printf("Falha ao abrir o arquivo para escrita.\n");
+        return;
+    }
+    
+    fprintf(arquivo, "Tarefas com prioridade %d e categoria %s:\n", prioridade, categoria);
+    fprintf(arquivo, "------------------------------\n");
+    
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0) {
+            fprintf(arquivo, "Tarefa %d:\n", i + 1);
+            fprintf(arquivo, "Prioridade: %d\n", tarefas[i].prioridade);
+            fprintf(arquivo, "Descrição: %s\n", tarefas[i].descricao);
+            fprintf(arquivo, "Categoria: %s\n", tarefas[i].categoria);
+            fprintf(arquivo, "------------------------------\n");
+        }
+    }
+    
+    fclose(arquivo);
+    printf("Tarefas exportadas com sucesso no arquivo %s.\n", nomeArquivo);
+}

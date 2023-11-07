@@ -138,6 +138,7 @@ void filtrarPrioridade(const Tarefa* tarefas, int numTarefas) {
     }
 }
 
+
 void filtrarCategoria(Tarefa* tarefas, int numTarefas) {
     char categoriaEscolhida[MAX_CATEGORIA];
     printf("Digite a categoria que deseja filtrar: ");
@@ -158,10 +159,23 @@ void filtrarCategoria(Tarefa* tarefas, int numTarefas) {
 
     for (int i = 0; i < numTarefas; i++) {
         if (strcmp(tarefas[i].categoria, categoriaEscolhida) == 0) {
+
+void filtrarEstado(const Tarefa* tarefas, int numTarefas) {
+    char estadoEscolhido[MAX_ESTADO];
+    printf("Qual o estado da tarefa que deseja filtrar: ");
+    scanf(" %[^\n]", estadoEscolhido);
+
+    printf("Tarefas no estado %s:\n", estadoEscolhido);
+    printf("------------------------------\n");
+
+    for (int i = 0; i < numTarefas; i++) {
+        if (strcmp(tarefas[i].estado, estadoEscolhido) == 0) {
+
             printf("Tarefa %d:\n", i + 1);
             printf("Prioridade: %d\n", tarefas[i].prioridade);
             printf("Descrição: %s\n", tarefas[i].descricao);
             printf("Categoria: %s\n", tarefas[i].categoria);
+            printf("Estado: %s\n", tarefas[i].estado);
             printf("------------------------------\n");
         }
     }

@@ -138,6 +138,7 @@ void filtrarPrioridade(const Tarefa* tarefas, int numTarefas) {
     }
 }
 
+
 void filtrarEstado(const Tarefa* tarefas, int numTarefas) {
     char estadoEscolhido[MAX_ESTADO];
     printf("Qual o estado da tarefa que deseja filtrar: ");
@@ -157,4 +158,3 @@ void filtrarEstado(const Tarefa* tarefas, int numTarefas) {
         }
     }
 }
-

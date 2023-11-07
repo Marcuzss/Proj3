@@ -20,6 +20,9 @@ void criarTarefa(Tarefa* tarefas, int* numTarefas) {
     printf("Digite a categoria da tarefa (até %d letras): ", MAX_CATEGORIA);
     scanf(" %[^\n]", novaTarefa.categoria);
 
+    printf("Digite o estado da tarefa (até %d letras): ", MAX_ESTADO);
+    scanf(" %[^\n]", novaTarefa.estado);
+
     tarefas[*numTarefas] = novaTarefa;
     (*numTarefas)++;
 }
@@ -48,6 +51,7 @@ void listarTarefas(const Tarefa* tarefas, int numTarefas) {
         printf("Prioridade: %d\n", tarefas[i].prioridade);
         printf("Descrição: %s\n", tarefas[i].descricao);
         printf("Categoria: %s\n", tarefas[i].categoria);
+        printf("Estado: %s\n", tarefas[i].estado);
         printf("------------------------------\n");
     }
 }
@@ -85,24 +89,6 @@ void carregarTarefas(Tarefa* tarefas, int* numTarefas, const char* nomeArquivo) 
     printf("Tarefas carregadas com sucesso do arquivo %s.\n", nomeArquivo);
 }
 
-void filtrarPrioridade(const Tarefa* tarefas, int numTarefas) {
-    int valorPrioridade;
-    printf("Digite a prioridade que deseja filtrar (0-10): ");
-    scanf("%d", &valorPrioridade);
-
-    printf("Tarefas com prioridade %d:\n", valorPrioridade);
-    printf("------------------------------\n");
-
-    for (int i = 0; i < numTarefas; i++) {
-        if (tarefas[i].prioridade == valorPrioridade) {
-            printf("Tarefa %d:\n", i + 1);
-            printf("Prioridade: %d\n", tarefas[i].prioridade);
-            printf("Descrição: %s\n", tarefas[i].descricao);
-            printf("Categoria: %s\n", tarefas[i].categoria);
-            printf("------------------------------\n");
-        }
-    }
-
 void alterarTarefa(Tarefa* tarefas, int posicao) {
     if (posicao < 0 || posicao >= MAX_TAREFAS) {
         printf("Posição inválida.\n");
@@ -138,54 +124,34 @@ void filtrarPrioridade(const Tarefa* tarefas, int numTarefas) {
     }
 }
 
+void exportarPrioridade(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* nomeArquivo) {
+    FILE* arquivo = fopen(nomeArquivo, "w");
+    if (arquivo == NULL) {
+        printf("Falha ao abrir o arquivo para escrita.\n");
+        return;
+    }
 
-void filtrarCategoria(Tarefa* tarefas, int numTarefas) {
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridadeEscolhida) {
+            fprintf(arquivo, "%d, %s, %s, %s\n", tarefas[i].prioridade, tarefas[i].categoria, tarefas[i].estado, tarefas[i].descricao);
+        }
+    }
+
+    fclose(arquivo);
+
+    printf("Tarefas de prioridade %d exportadas com sucesso para o arquivo %s.\n", prioridadeEscolhida, nomeArquivo);
+}
+
+void filtrarCategoria(const Tarefa* tarefas, int numTarefas) {
     char categoriaEscolhida[MAX_CATEGORIA];
     printf("Digite a categoria que deseja filtrar: ");
     scanf(" %[^\n]", categoriaEscolhida);
-
-    for (int i = 0; i < numTarefas - 1; i++) {
-        for (int j = i + 1; j < numTarefas; j++) {
-            if (tarefas[i].prioridade < tarefas[j].prioridade) {
-                Tarefa aux = tarefas[i];
-                tarefas[i] = tarefas[j];
-                tarefas[j] = aux;
-            }
-        }
-    }
 
     printf("Tarefas da categoria %s:\n", categoriaEscolhida);
     printf("------------------------------\n");
 
     for (int i = 0; i < numTarefas; i++) {
         if (strcmp(tarefas[i].categoria, categoriaEscolhida) == 0) {
-
-void filtrarEstado(const Tarefa* tarefas, int numTarefas) {
-    char estadoEscolhido[MAX_ESTADO];
-    printf("Qual o estado da tarefa que deseja filtrar: ");
-    scanf(" %[^\n]", estadoEscolhido);
-
-    printf("Tarefas no estado %s:\n", estadoEscolhido);
-    printf("------------------------------\n");
-
-    for (int i = 0; i < numTarefas; i++) {
-        if (strcmp(tarefas[i].estado, estadoEscolhido) == 0) {
-
-            printf("Tarefa %d:\n", i + 1);
-            printf("Prioridade: %d\n", tarefas[i].prioridade);
-            printf("Descrição: %s\n", tarefas[i].descricao);
-            printf("Categoria: %s\n", tarefas[i].categoria);
-            printf("Estado: %s\n", tarefas[i].estado);
-            printf("------------------------------\n");
-        }
-    }
-}
-
-filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida) {
-    printf("Tarefas com prioridade %d e categoria %s:\n", prioridadeEscolhida, categoriaEscolhida);
-    printf("------------------------------\n");
-    for (int i = 0; i < numTarefas; i++) {
-        if (tarefas[i].prioridade == prioridadeEscolhida && strcmp(tarefas[i].categoria, categoriaEscolhida) == 0) {
             printf("Tarefa %d:\n", i + 1);
             printf("Prioridade: %d\n", tarefas[i].prioridade);
             printf("Descrição: %s\n", tarefas[i].descricao);
@@ -202,11 +168,30 @@ void exportarCategoria(const Tarefa* tarefas, int numTarefas, const char* catego
         printf("Falha ao abrir o arquivo para escrita.\n");
         return;
     }
+
     for (int i = 0; i < numTarefas; i++) {
         if (strcmp(tarefas[i].categoria, categoriaEscolhida) == 0) {
             fprintf(arquivo, "%d, %s, %s, %s\n", tarefas[i].prioridade, tarefas[i].categoria, tarefas[i].estado, tarefas[i].descricao);
         }
     }
+
     fclose(arquivo);
+
     printf("Tarefas da categoria %s exportadas com sucesso para o arquivo %s.\n", categoriaEscolhida, nomeArquivo);
+}
+
+void filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida) {
+    printf("Tarefas com prioridade %d e categoria %s:\n", prioridadeEscolhida, categoriaEscolhida);
+    printf("------------------------------\n");
+
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridadeEscolhida && strcmp(tarefas[i].categoria, categoriaEscolhida) == 0) {
+            printf("Tarefa %d:\n", i + 1);
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descrição: %s\n", tarefas[i].descricao);
+            printf("Categoria: %s\n", tarefas[i].categoria);
+            printf("Estado: %s\n", tarefas[i].estado);
+            printf("------------------------------\n");
+        }
+    }
 }

@@ -59,19 +59,19 @@ int main() {
         } else if (opcao == 9) {
             filtrarTarefasPorCategoria(tarefas, numTarefas);
         } else if (opcao == 10) {
-            int prioridadeEscolhida;
-            char categoriaEscolhida[MAX_CATEGORIA];
-            printf("Digite a prioridade que deseja filtrar (0-10): ");
-            scanf("%d", &prioridadeEscolhida);
-            printf("Digite a categoria que deseja filtrar: ");
-            scanf("%s", categoriaEscolhida);
-            filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida);
+              int prioridadeEscolhida;
+              char categoriaEscolhida[MAX_CATEGORIA];
+              printf("Digite a prioridade que deseja filtrar (0-10): ");
+              scanf("%d", &prioridadeEscolhida);
+              printf("Digite a categoria que deseja filtrar: ");
+              scanf("%s", categoriaEscolhida);
+              filtrarTarefasPorPrioridadeECategoria(tarefas, numTarefas, prioridadeEscolhida, categoriaEscolhida);
         } else if (opcao == 11) {
-            exportarPrioridade(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* nomeArquivo);
+              exportarTarefasPorPrioridade(tarefas, numTarefas);
         } else if (opcao == 12) {
-            // Add code to export tasks by category
+              exportarTarefasPorCategoria(tarefas, numTarefas);
         } else if (opcao == 13) {
-            // Add code to export tasks by priority and category
+              exportarTarefasPorPrioridadeECategoria(tarefas, numTarefas);
         } else if (opcao == 0) {
             break;
         } else {
@@ -80,5 +80,7 @@ int main() {
          
     }
 }
+
+
 
 

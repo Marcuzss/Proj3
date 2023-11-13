@@ -25,7 +25,6 @@ int main() {
         printf("13. Exportar tarefas por prioridade e categoria\n");
         printf("0. Sair\n");
         printf("Escolha uma opção: ");
-        
         int opcao;
         scanf("%d", &opcao);
 
@@ -48,14 +47,37 @@ int main() {
             printf("Digite o nome do arquivo para carregar as tarefas: ");
             scanf("%s", nomeArquivo);
             carregarTarefas(tarefas, &numTarefas, nomeArquivo);
+        } else if (opcao == 6) {
+            int posicao;
+            printf("Digite a posição da tarefa a ser alterada: ");
+            scanf("%d", &posicao);
+            alterarTarefa(tarefas, posicao - 1);
+        } else if (opcao == 7) {
+            filtrarTarefasPorPrioridade(tarefas, numTarefas);
+        } else if (opcao == 8) {
+            filtrarTarefasPorEstado(tarefas, numTarefas);
+        } else if (opcao == 9) {
+            filtrarTarefasPorCategoria(tarefas, numTarefas);
+        } else if (opcao == 10) {
+            int prioridadeEscolhida;
+            char categoriaEscolhida[MAX_CATEGORIA];
+            printf("Digite a prioridade que deseja filtrar (0-10): ");
+            scanf("%d", &prioridadeEscolhida);
+            printf("Digite a categoria que deseja filtrar: ");
+            scanf("%s", categoriaEscolhida);
+        } else if (opcao == 11) {
+            // Add code to export tasks by priority
+        } else if (opcao == 12) {
+            // Add code to export tasks by category
+        } else if (opcao == 13) {
+            // Add code to export tasks by priority and category
         } else if (opcao == 0) {
-            printf("Encerrando o programa...\n");
             break;
         } else {
-            printf("Opção inválida.\n");
+            printf("Opção inválida. Tente novamente.\n");
         }
+         
     }
-
-    return 0;
 }
+
 

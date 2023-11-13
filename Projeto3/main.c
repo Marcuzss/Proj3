@@ -67,7 +67,7 @@ int main() {
             scanf("%s", categoriaEscolhida);
             filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida);
         } else if (opcao == 11) {
-            // Add code to export tasks by priority
+            exportarPrioridade(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* nomeArquivo);
         } else if (opcao == 12) {
             // Add code to export tasks by category
         } else if (opcao == 13) {

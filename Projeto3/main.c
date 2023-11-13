@@ -65,6 +65,7 @@ int main() {
             scanf("%d", &prioridadeEscolhida);
             printf("Digite a categoria que deseja filtrar: ");
             scanf("%s", categoriaEscolhida);
+            filtrarPrioridadeCategoria(const Tarefa* tarefas, int numTarefas, int prioridadeEscolhida, const char* categoriaEscolhida);
         } else if (opcao == 11) {
             // Add code to export tasks by priority
         } else if (opcao == 12) {
